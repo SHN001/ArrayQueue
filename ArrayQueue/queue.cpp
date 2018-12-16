@@ -3,28 +3,47 @@
 
 using namespace std;
 
-class List
+Block& List::get_head_block() { return *m_head_block; }
+
+bool List::is_block_full()
 {
-	Block* m_head_block;
-	//array<int, 10>::iterator m_head_data;
-public:
-	List() :m_head_block(nullptr) {}
-	~List() {}
+	if (m_head_block && (m_head_block->data_itr == m_head_block->data.cend))
+		return true;
+	else
+		return false;
+}
 
-	virtual bool push(const int data) = 0;
-	virtual bool pop() = 0;
-	virtual void delete_all() = 0;
-	virtual bool is_block_full() = 0;
-	virtual bool is_block_empty() = 0;
-	Block& get_m_head_block() { return *m_head_block; }
+bool List::is_block_empty()
+{
+	if (!m_head_block)
+		return true;
+	else
+		return false;
+}
 
-	void print_all();
-};
+bool List::delete_all()
+{
+	Block* next;
+	if (!m_head_block)
+		return false;
+	while (m_head_block)
+	{
+		next = m_head_block->next_block;
+		delete m_head_block;
+		m_head_block = next;
+	}
+	
+	return true;
+}
 
 void List::print_all()
 {
 	Block* tmp;
 	tmp = m_head_block;
+
+	if (!m_head_block)
+		cout << "=====Empty!=====" << endl;
+		
 	cout << "=====Print All=====" << endl;
 	while (tmp != nullptr)
 	{
@@ -54,5 +73,8 @@ public:
 
 bool Queue::push(const int data)
 {
-	if(m_head_block)
+	if (!get_head_block)
+	{
+
+	}
 }
