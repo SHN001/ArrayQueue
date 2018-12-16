@@ -2,26 +2,20 @@
 
 #include <array>
 
-struct Block
-{
-	std::array<int, 10> data;
-	Block* next_block;
-};
-
 class List
 {
-	Block* m_head_block;
-	array<int, 10>::iterator m_head_data;
+	array<int,10> m_data;
+	array<int, 10>::iterator m_head;
 public:
-	List() :m_head_block(nullptr) {}
+	List() :m_data({0}) {}
 	~List() {}
 
 	virtual bool push(const int data) = 0;
 	virtual bool pop() = 0;
-	virtual void delete_all() = 0;
-	virtual bool is_block_full() = 0;
-	virtual bool is_block_empty() = 0;
 	
+	bool delete_all();
+	bool is_block_full();
+	bool is_block_empty();
 	void print_all();
 };
 
@@ -33,8 +27,4 @@ public:
 	
 	virtual bool push(const int data);
 	virtual bool pop();
-	virtual void delete_all();
-	virtual bool is_block_full();
-	virtual bool is_block_empty();
-	virtual void print_all();
 };
