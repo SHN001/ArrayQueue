@@ -1,4 +1,5 @@
 #include <iostream>
+#include <thread>
 #include "ArrayQueue.h"
 
 using namespace std;
@@ -40,5 +41,23 @@ int main()
 
 	q.print_all();
 
+	std::thread th1 = std::thread([&]() {
+
+		for (int i = 0; i < 100; ++i)
+			std::cout << "H";
+	});
+
+	std::thread th2 = std::thread([&]() {
+
+		for (int i = 0; i < 100; ++i)
+			std::cout << "E";
+	});
+	th1.join();
+	th2.join();
+
+	int a = 4;
+	float b = (int)a;
+	float c = int(a);
+	
 	return 0;
 }

@@ -11,7 +11,7 @@ protected:
 	std::array<int, 10>::iterator m_rear;
 public:
 	List():m_front(m_data.begin()),m_rear(m_data.begin()) {}
-	~List() {}
+	virtual ~List() {}
 	
 	bool is_full();
 	bool is_empty();
@@ -29,7 +29,7 @@ public:
 	Queue() : List() {}
 	~Queue() {}
 	
-	virtual bool push(const int data) ;
+	virtual bool push(const int data) override;
 	virtual bool pop() ;
 	int front();
 };
