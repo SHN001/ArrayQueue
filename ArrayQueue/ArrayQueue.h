@@ -3,19 +3,18 @@
 
 #include <array>
 
-//¿øÇü Å¥
-
+template <typename T1>
 class List
 {
 protected:
-	std::array<int, 10> data;
-	std::array<int,10>::iterator m_front;
-	std::array<int, 10>::iterator m_rear;
+	std::array<T1, 10> data;
+	std::array<T1,10>::iterator m_front;
+	std::array<T1, 10>::iterator m_rear;
 public:
 	List():m_front(data.begin()),m_rear(data.begin()) {}
 	~List() {}
 
-	virtual bool push(const int data) = 0;
+	virtual bool push(const T1 data) = 0;
 	virtual bool pop() = 0;
 	
 	bool is_full();
@@ -25,16 +24,17 @@ public:
 
 };
 
-class Queue : public List
+template <typename T1>
+class Queue : public List< T1>
 {
 public:
 	Queue() : List() {}
 	~Queue() {}
 	
-	virtual bool push(const int data) ;
+	virtual bool push(const T1 data) ;
 	virtual bool pop() ;
 
-	int front();
+	T1 front();
 
 };
 

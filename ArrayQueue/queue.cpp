@@ -3,8 +3,8 @@
 
 using namespace std;
 
-
-bool List::is_full()
+template <typename T1>
+bool List<T1>::is_full()
 {
 	if ((m_rear) == data.end())
 		return true;
@@ -12,7 +12,10 @@ bool List::is_full()
 		return false;
 }
 
-bool List::is_empty()
+
+
+template <typename T1> 
+bool List< T1>::is_empty()
 {
 	if (m_front == m_rear)
 		return true;
@@ -20,7 +23,9 @@ bool List::is_empty()
 		return false;
 }
 
-bool List::reset_all()
+
+template <typename T1>
+bool List<T1>::reset_all()
 {
 	array<int, 10>::iterator tmp_itr = data.begin();
 
@@ -34,7 +39,9 @@ bool List::reset_all()
 	return true;
 }
 
-void List::print_all()
+
+template <typename T1>
+void List<T1>::print_all()
 {
 	array<int, 10>::iterator tmp_itr = m_front;
 
@@ -53,8 +60,8 @@ void List::print_all()
 }
 
 
-
-bool Queue::push(const int data)
+template <typename T1>
+bool Queue<T1>::push(const T1 data)
 {
 	if (is_full())
 	{
@@ -78,7 +85,9 @@ bool Queue::push(const int data)
 	return false;
 }
 
-bool Queue::pop()
+
+template <typename T1>
+bool Queue<T1>::pop()
 {
 	if (is_empty())
 		return false;
@@ -86,7 +95,9 @@ bool Queue::pop()
 		return true;
 }
 
-int Queue::front()
+
+template <typename T1>
+T1 Queue<T1>::front()
 {
 	if (pop())
 		return *m_front;
