@@ -64,25 +64,47 @@ void List::print_all()
 	cout << "=====Print End=====" << endl;
 }
 
-class Queue : public List
-{
-public:
-	Queue() : List() {}
-	~Queue() {}
-
-	virtual bool push(const int data);
-	virtual bool pop();
-	virtual void delete_all();
-	virtual bool is_block_full();
-	virtual bool is_block_empty();
-	virtual void print_all();
-	
-};
-
 bool Queue::push(const int data)
 {
-	if (!get_head_block)
+	if (is_list_empty)
 	{
+		m_head_block = new Block;
+		m_rear_block = m_head_block;
+		m_head_block->next_block = nullptr;
 
+		m_head_block->data_itr = m_head_block->data.begin();
+		*(m_rear_block->data_itr) = data;
+		m_rear_block->data_itr++;
+		return true;
 	}
+
+	if (is_list_full)
+	{
+		Block* tmp = new Block;
+		m_rear_block->next_block = tmp;
+		m_rear_block = tmp;
+
+		m_rear_block->data_itr = m_rear_block->data.begin();
+		*(m_rear_block->data_itr) = data;
+		m_rear_block->data_itr++;
+		return true;
+	}
+	else
+	{
+		*(m_rear_block->data_itr) = data;
+		m_rear_block->data_itr++;
+		return true;
+	}
+
+	return false;
+}
+
+bool Queue::pop()
+{
+
+}
+
+int Queue::front()
+{
+
 }

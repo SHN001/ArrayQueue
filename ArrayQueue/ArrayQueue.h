@@ -36,4 +36,6 @@ public:
 	
 	virtual bool push(const int data);
 	virtual bool pop();
+
+	int front();
 };
