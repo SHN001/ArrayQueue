@@ -6,7 +6,7 @@ using namespace std;
 
 bool List::is_full()
 {
-	if ((m_rear) == m_data.end())
+	if (m_rear == m_data.end())
 		return true;
 	else
 		return false;
@@ -31,12 +31,21 @@ bool List::reset_all()
 	{
 		*tmp_itr = NULL;
 	}
+	m_front = m_data.begin();
+	m_rear = m_data.begin();
+
 	return true;
 }
 
 void List::print_all()
 {
 	array<int, 10>::iterator tmp_itr = m_front;
+
+	if (is_empty())
+	{
+		cout << "!!!Empty!!!" << endl;
+		return;
+	}
 
 	cout << "=====Print All=====" << endl;
 
@@ -78,16 +87,29 @@ bool Queue::push(const int data)
 	return false;
 }
 
+
 bool Queue::pop()
 {
 	if (is_empty())
 		return false;
 	else
+	{
+		array<int, 10>::iterator tmp_itr = m_front;
+		for (; tmp_itr != (m_rear - 1); tmp_itr++)
+		{
+			*tmp_itr = *(tmp_itr + 1);
+		}
+		
+		*(m_rear-1) = NULL;
+		m_rear--;
+
 		return true;
+	}
 }
+
 
 int Queue::front()
 {
-	if (pop())
+	if(!is_empty())
 		return *m_front;
 }

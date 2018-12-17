@@ -27,6 +27,13 @@ int main()
 
 	q.print_all();
 
+	cout << "!!!!!pop!!!!!" << endl;
+
+
+	q.pop();
+
+	q.print_all();
+
 	cout << "pop front : " << q.front() << endl;
 
 	q.reset_all();
