@@ -4,17 +4,17 @@
 using namespace std;
 
 
-bool List::is_full()
+bool Queue::is_full()
 {
-	if (m_front == data.cend())
+	if (m_rear == (data.size-1))
 		return true;
 	else
 		return false;
 }
 
-bool List::is_empty()
+bool Queue::is_empty()
 {
-	if (m_front == data.cbegin())
+	if (m_front == m_rear)
 		return true;
 	else
 		return false;
@@ -27,7 +27,7 @@ bool List::delete_all()
 	if (is_empty())
 		return false;
 
-	for (; tmp_itr != m_front; tmp_itr++)
+	for (; tmp_itr != data.cend(); tmp_itr++)
 	{
 		*tmp_itr = NULL;
 	}
@@ -35,22 +35,6 @@ bool List::delete_all()
 }
 
 
-void List::print_all()
-{
-	array<int, 10>::iterator tmp_itr = data.begin();
-
-	cout << "=====Print All=====" << endl;
-
-	for (  ; tmp_itr != m_front; tmp_itr++)
-	{
-		cout << *tmp_itr;
-		if ((tmp_itr + 1) != m_front)
-			cout << " -> ";
-	}
-	cout << endl;
-	cout << "=====Print End=====" << endl;
-
-}
 
 bool Queue::push(const int data)
 {
@@ -82,3 +66,29 @@ int Queue::front()
 		return *(m_front-1);
 }
 
+
+void Queue::print_all()
+{
+	array<int, 10>::iterator tmp_itr = m_front;
+
+	cout << "=====Print All=====" << endl;
+
+	for (; tmp_itr != data.end(); tmp_itr++)
+	{
+		cout << *tmp_itr;
+		if ((tmp_itr + 1) != data.end())
+			cout << " -> ";
+	}
+
+	/*
+	for (  ; tmp_itr != m_front; tmp_itr++)
+	{
+		cout << *tmp_itr;
+		if ((tmp_itr + 1) != m_front)
+			cout << " -> ";
+	}
+	*/
+	cout << endl;
+	cout << "=====Print End=====" << endl;
+
+}
