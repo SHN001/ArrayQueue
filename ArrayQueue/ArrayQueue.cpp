@@ -4,7 +4,7 @@
 using namespace std;
 
 
-bool List::is_full()
+bool Queue::is_full()
 {
 	if (m_rear == m_data.end())
 		return true;
@@ -12,7 +12,7 @@ bool List::is_full()
 		return false;
 }
 
-bool List::is_empty()
+bool Queue::is_empty()
 {
 	if (m_front == m_rear)
 		return true;
@@ -20,7 +20,7 @@ bool List::is_empty()
 		return false;
 }
 
-bool List::reset_all()
+bool Queue::reset_all()
 {
 	array<int, 10>::iterator tmp_itr = m_data.begin();
 
@@ -37,7 +37,7 @@ bool List::reset_all()
 	return true;
 }
 
-void List::print_all()
+void Queue::print_all()
 {
 	array<int, 10>::iterator tmp_itr = m_front;
 
@@ -110,6 +110,8 @@ bool Queue::pop()
 
 int Queue::front()
 {
-	if(!is_empty())
+	if (!is_empty())
 		return *m_front;
+	else
+		return 0;
 }

@@ -124,7 +124,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="queue.cpp" />
+    <ClCompile Include="ArrayQueue.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArrayQueue.h" />

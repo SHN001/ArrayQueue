@@ -41,6 +41,7 @@ int main()
 
 	q.print_all();
 
+	/*
 	std::thread th1 = std::thread([&]() {
 
 		for (int i = 0; i < 100; ++i)
@@ -54,10 +55,7 @@ int main()
 	});
 	th1.join();
 	th2.join();
+	*/
 
-	int a = 4;
-	float b = (int)a;
-	float c = int(a);
-	
 	return 0;
 }
