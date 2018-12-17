@@ -3,16 +3,14 @@
 
 #include <array>
 
-//¿øÇü Å¥
-
 class List
 {
 protected:
-	std::array<int, 10> data;
+	std::array<int, 10> m_data;
 	std::array<int,10>::iterator m_front;
 	std::array<int, 10>::iterator m_rear;
 public:
-	List():m_front(data.begin()),m_rear(data.begin()) {}
+	List():m_front(m_data.begin()),m_rear(m_data.begin()) {}
 	~List() {}
 
 	virtual bool push(const int data) = 0;

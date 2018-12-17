@@ -6,7 +6,7 @@ using namespace std;
 
 bool List::is_full()
 {
-	if ((m_rear) == data.end())
+	if ((m_rear) == m_data.end())
 		return true;
 	else
 		return false;
@@ -22,12 +22,12 @@ bool List::is_empty()
 
 bool List::reset_all()
 {
-	array<int, 10>::iterator tmp_itr = data.begin();
+	array<int, 10>::iterator tmp_itr = m_data.begin();
 
 	if (is_empty())
 		return false;
 
-	for (; tmp_itr != (m_rear+1); tmp_itr++)
+	for (; tmp_itr != m_rear; tmp_itr++)
 	{
 		*tmp_itr = NULL;
 	}

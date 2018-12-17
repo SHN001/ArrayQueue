@@ -17,14 +17,19 @@ int main()
 	q.push(7);
 	q.push(8);
 	q.push(9);
-
-	q.print_all();
-
 	q.push(10);
 
 	q.print_all();
 
+	cout << "pop front : " << q.front() << endl;
+
 	q.push(11);
+
+	q.print_all();
+
+	cout << "pop front : " << q.front() << endl;
+
+	q.reset_all();
 
 	q.print_all();
 
