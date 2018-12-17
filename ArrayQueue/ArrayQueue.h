@@ -30,6 +30,7 @@ public:
 	
 	bool set_data(const int data);
 	bool set_data_itr();
+	bool set_m_head_block
 	bool set_next_block();
 };
 
