@@ -1,30 +1,39 @@
-#pragma once
+#ifndef ARRAYQUEUE_H
+#define ARRAYQUEUE_H
 
 #include <array>
 
 class List
 {
-	array<int,10> m_data;
-	array<int, 10>::iterator m_head;
+protected:
+	std::array<int, 10> data;
+	std::array<int, 10>::iterator m_front;
 public:
-	List() :m_data({0}) {}
+	List() : m_front(data.begin()) {}
 	~List() {}
 
 	virtual bool push(const int data) = 0;
 	virtual bool pop() = 0;
 	
+	bool is_full();
+	bool is_empty();
 	bool delete_all();
-	bool is_block_full();
-	bool is_block_empty();
 	void print_all();
+
 };
 
 class Queue : public List
 {
+	std::array<int, 10>::iterator m_rear;
 public:
-	Queue() : List() {}
+	Queue() : List(), m_rear(data.end()) {}
 	~Queue() {}
 	
-	virtual bool push(const int data);
-	virtual bool pop();
+	virtual bool push(const int data) ;
+	virtual bool pop() ;
+
+	int front();
+
 };
+
+#endif
