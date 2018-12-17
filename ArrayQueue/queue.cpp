@@ -3,17 +3,25 @@
 
 using namespace std;
 
-Block& List::get_head_block() { return *m_head_block; }
-
-bool List::is_block_full()
+bool List::is_list_full()
 {
-	if (m_head_block && (m_head_block->data_itr == m_head_block->data.cend))
+	Block* last = m_head_block;
+
+	if (!m_head_block)
+		return false;
+
+	while (last->next_block != nullptr)
+	{
+		last = last->next_block;
+	}
+
+	if (last->data_itr == last->data.cend())
 		return true;
 	else
 		return false;
 }
 
-bool List::is_block_empty()
+bool List::is_list_empty()
 {
 	if (!m_head_block)
 		return true;

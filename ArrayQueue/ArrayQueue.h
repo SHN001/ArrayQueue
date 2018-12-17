@@ -11,6 +11,7 @@ struct Block
 
 class List
 {
+protected:
 	Block* m_head_block;
 public:
 	List() :m_head_block(nullptr) {}
@@ -20,24 +21,17 @@ public:
 	virtual bool pop() = 0;
 	
 	bool delete_all();
-	bool is_block_full();
-	bool is_block_empty();
+	bool is_list_full();
+	bool is_list_empty();
 	void print_all();
 
-	Block& get_head_block() const;
-	int get_head_data() const;
-	int get_data_itr() const;
-	
-	bool set_data(const int data);
-	bool set_data_itr();
-	bool set_m_head_block
-	bool set_next_block();
 };
 
 class Queue : public List
 {
+	Block* m_rear_block;
 public:
-	Queue() : List() {}
+	Queue() : List(),m_rear_block(nullptr) {}
 	~Queue() {}
 	
 	virtual bool push(const int data);
