@@ -4,15 +4,15 @@
 using namespace std;
 
 
-bool Queue::is_full()
+bool List::is_full()
 {
-	if (m_rear == (data.size-1))
+	if ((m_rear) == data.end())
 		return true;
 	else
 		return false;
 }
 
-bool Queue::is_empty()
+bool List::is_empty()
 {
 	if (m_front == m_rear)
 		return true;
@@ -20,18 +20,36 @@ bool Queue::is_empty()
 		return false;
 }
 
-bool List::delete_all()
+bool List::reset_all()
 {
 	array<int, 10>::iterator tmp_itr = data.begin();
 
 	if (is_empty())
 		return false;
 
-	for (; tmp_itr != data.cend(); tmp_itr++)
+	for (; tmp_itr != (m_rear+1); tmp_itr++)
 	{
 		*tmp_itr = NULL;
 	}
 	return true;
+}
+
+void List::print_all()
+{
+	array<int, 10>::iterator tmp_itr = m_front;
+
+	cout << "=====Print All=====" << endl;
+
+	for (; tmp_itr != m_rear; tmp_itr++)
+	{
+		cout << *tmp_itr;
+		if ((tmp_itr + 1) != m_rear)
+			cout << " -> ";
+	}
+
+	cout << endl;
+	cout << "=====Print End=====" << endl;
+
 }
 
 
@@ -40,21 +58,29 @@ bool Queue::push(const int data)
 {
 	if (is_full())
 	{
-		m_front = this->data.begin();
-		*m_front = data;
-		m_front++;
+		array<int, 10>::iterator tmp_itr = m_front;
+		
+		for (; tmp_itr != (m_rear-1); tmp_itr++)
+		{
+			*tmp_itr = *(tmp_itr + 1);
+		}
+
+		*(m_rear-1) = data;
+		
+		return true;
 	}
 	else
 	{
-		*m_front = data;
-		m_front++;
+		*m_rear = data;
+		m_rear++;
+		return true;
 	}
-	return true;
+	return false;
 }
 
 bool Queue::pop()
 {
-	if (m_front == data.cbegin())
+	if (is_empty())
 		return false;
 	else
 		return true;
@@ -63,32 +89,5 @@ bool Queue::pop()
 int Queue::front()
 {
 	if (pop())
-		return *(m_front-1);
-}
-
-
-void Queue::print_all()
-{
-	array<int, 10>::iterator tmp_itr = m_front;
-
-	cout << "=====Print All=====" << endl;
-
-	for (; tmp_itr != data.end(); tmp_itr++)
-	{
-		cout << *tmp_itr;
-		if ((tmp_itr + 1) != data.end())
-			cout << " -> ";
-	}
-
-	/*
-	for (  ; tmp_itr != m_front; tmp_itr++)
-	{
-		cout << *tmp_itr;
-		if ((tmp_itr + 1) != m_front)
-			cout << " -> ";
-	}
-	*/
-	cout << endl;
-	cout << "=====Print End=====" << endl;
-
+		return *m_front;
 }
