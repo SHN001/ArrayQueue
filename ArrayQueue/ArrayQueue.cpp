@@ -22,12 +22,10 @@ bool Queue::is_empty()
 
 bool Queue::reset_all()
 {
-	array<int, 10>::iterator tmp_itr = m_data.begin();
-
 	if (is_empty())
 		return false;
 
-	for (; tmp_itr != m_rear; tmp_itr++)
+	for (auto tmp_itr = m_data.begin(); tmp_itr != m_rear; tmp_itr++)
 	{
 		*tmp_itr = NULL;
 	}
@@ -39,8 +37,6 @@ bool Queue::reset_all()
 
 void Queue::print_all()
 {
-	array<int, 10>::iterator tmp_itr = m_front;
-
 	if (is_empty())
 	{
 		cout << "!!!Empty!!!" << endl;
@@ -49,7 +45,7 @@ void Queue::print_all()
 
 	cout << "=====Print All=====" << endl;
 
-	for (; tmp_itr != m_rear; tmp_itr++)
+	for (auto tmp_itr = m_front ; tmp_itr != m_rear; tmp_itr++)
 	{
 		cout << *tmp_itr;
 		if ((tmp_itr + 1) != m_rear)
@@ -66,10 +62,8 @@ void Queue::print_all()
 bool Queue::push(const int data)
 {
 	if (is_full())
-	{
-		array<int, 10>::iterator tmp_itr = m_front;
-		
-		for (; tmp_itr != (m_rear-1); tmp_itr++)
+	{	
+		for (auto tmp_itr = m_front ; tmp_itr != (m_rear-1); tmp_itr++)
 		{
 			*tmp_itr = *(tmp_itr + 1);
 		}
@@ -78,6 +72,8 @@ bool Queue::push(const int data)
 		
 		return true;
 	}
+
+
 	else
 	{
 		*m_rear = data;
@@ -94,8 +90,7 @@ bool Queue::pop()
 		return false;
 	else
 	{
-		array<int, 10>::iterator tmp_itr = m_front;
-		for (; tmp_itr != (m_rear - 1); tmp_itr++)
+		for (auto tmp_itr = m_front ; tmp_itr != (m_rear - 1); tmp_itr++)
 		{
 			*tmp_itr = *(tmp_itr + 1);
 		}
